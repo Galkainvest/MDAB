@@ -1,0 +1,15 @@
+import requests
+
+def fetch_market_data(symbol):
+    url = f"https://api.binance.com/api/v3/ticker/24hr?symbol={symbol}"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        print("Price Change:", data["priceChangePercent"], "%")
+        print("Last Price:", data["lastPrice"])
+    else:
+        print("Error fetching data.")
+
+if __name__ == "__main__":
+    symbol = input("Enter symbol (e.g., BTCUSDT): ")
+    fetch_market_data(symbol)
